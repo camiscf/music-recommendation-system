@@ -1,0 +1,42 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="shortcut icon" href="{% static 'icon-music-heart.png' %}" type="image/x-icon">
+    <title>Recomendação de Música</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'icon-music-heart.png' %}" alt="icon-music-heart">
+            <h1 id = "header-text">Recomendação de Música</h1>
+        </div>
+        <a href="{% url 'about' %}" id="sobre">Sobre</a>
+    </header>
+    <main>
+        <div class="container entrada">
+            <label class="title" for="input">URL do spotify:  </label>
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                <input type="url" id="input-url" placeholder="Insira a URL da música" value="{{form.url.value | default_if_none:''}}" name="{{form.url.name}}">
+                <button type ="submit" id="btn-url">Enviar</button>
+            </form>
+        </div>
+        <div class="container resultado">
+            <h1 class="title">Recomendação</h1>
+            <p id="resultado">
+                <a href="{{href_cosseno}}">{{music_cosseno}}</a>
+                <br>
+                <a href="{{href_distance}}">{{music_distance}}</a>
+            </p>
+        </div>
+    </main>
+
+</body>
+</html>
