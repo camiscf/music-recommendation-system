@@ -99,7 +99,6 @@ def check_existence(df, input_df):
   '''
   db_index = db.index
   condition = input_df["id"].item() == db["id"]
-  # condition = input_df[1].item() == db[1]
   if db_index[condition].any():
     track_name = db_index[condition].tolist()[0]
     position = db_index.tolist().index(track_name)

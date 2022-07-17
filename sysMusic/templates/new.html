@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{% static 'home.css' %}"> -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="shortcut icon" href="{% static 'icons-sparkling.png' %}" type="image/x-icon">
     <title>Recomendação de Música</title>
@@ -27,8 +28,8 @@
             </div>
             <p id="text-entrada">Para gerar sua recomendação é preciso pegar a URL da música no Spotify</p>
             <form action="{% url 'index' %}" method="post">
-                {% csrf_token %}
-                <input type="url" id="input-url" placeholder="Insira a URL da música" value="{{form.url.value | default_if_none:''}}" name="{{form.url.name}}">
+                 {% csrf_token %}
+                <input autocomplete="off" type="url" id="input-url" placeholder="Insira a URL da música">
                 <button type ="submit" id="btn-url">Enviar</button>
             </form>
         </div>
@@ -38,12 +39,11 @@
                 <h1 class="title">Recomendação</h1>
             </div>
             <p id="resultado">
-                <a href="{{href_cosseno}}">{{music_cosseno}}</a>
+                <a class="music" href="{{href_cosseno}}">{{music_cosseno}}</a>
                 <br>
-                <a href="{{href_distance}}">{{music_distance}}</a>
+                <a class="music" href="{{href_distance}}">{{music_distance}}</a>
             </p>
         </div>
     </main>
-
 </body>
 </html>
